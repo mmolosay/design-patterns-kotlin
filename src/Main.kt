@@ -1,3 +1,4 @@
+import decorator.*
 import observer.Observer
 import strategy.Strategy
 import java.lang.Exception
@@ -13,6 +14,7 @@ fun printMenu() {
     println("" +
             "1. Strategy\n" +
             "2. Observer\n" +
+            "3. Decorator\n" +
             "==============================" +
             "")
 }
@@ -36,6 +38,7 @@ fun toggleMenu(input: Int) {
     when(input) {
         1 -> strategy()
         2 -> observer()
+        3 -> decorator()
     }
     println("==============================")
 }
@@ -80,4 +83,14 @@ fun observer() {
         text = "pattern"
         text = "demonstration"
     }
+}
+
+fun decorator() {
+    val coffee = BreakfastCoffee()
+    val cornflakes = BreakfastMeal(coffee, "cornflakes")
+    val sandwich = BreakfastMeal(cornflakes, "sandwich")
+    val apple = BreakfastMeal(sandwich, "apple")
+
+    print("John's breakfast: ")
+    apple.makeBreakfast()
 }
