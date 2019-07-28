@@ -1,3 +1,4 @@
+import observer.Observer
 import strategy.Strategy
 import java.lang.Exception
 
@@ -58,7 +59,7 @@ fun strategy() {
     val decoyDuck = Strategy.Duck(commonQuackBehavior)
 
     println("Mallard duck says ${mallardDuck.performQuack()}.")
-            println("Rubber duck says ${rubberDuck.performQuack()} when it is squeezed.")
+    println("Rubber duck says ${rubberDuck.performQuack()} when it is squeezed.")
     println("Toy duck says ${toyDuck.performQuack()}. Seems like it is primitive toy.")
     println("Decoy duck says ${decoyDuck.performQuack()}, hunter is here.")
 
@@ -70,5 +71,13 @@ fun strategy() {
 }
 
 fun observer() {
+    val textObserver = Observer.TextObserver().apply {
+        listener = Observer.TextChangedListener()
+    }
 
+    with(textObserver) {
+        text = "Observer"
+        text = "pattern"
+        text = "demonstration"
+    }
 }
