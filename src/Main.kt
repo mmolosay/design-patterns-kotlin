@@ -1,3 +1,5 @@
+import abstractfactory.Car
+import abstractfactory.VehicleFactory
 import decorator.*
 import factorymethod.*
 import observer.Observer
@@ -18,7 +20,8 @@ fun printMenu() {
             "2. Observer\n" +
             "3. Decorator\n" +
             "4. Factory Method\n" +
-            "5. Singleton\n" +
+            "5. Abstract Factory\n" +
+            "6. Singleton\n" +
             "==============================" +
             "")
 }
@@ -44,7 +47,8 @@ fun toggleMenu(input: Int) {
         2    -> observer()
         3    -> decorator()
         4    -> factoryMethod()
-        5    -> singleton()
+        5    -> abstractFactory()
+        6    -> singleton()
 
         else -> println("Invalid input. Try again.")
     }
@@ -113,6 +117,12 @@ fun factoryMethod() {
     println("New York —> $nyCountry")
     println("Moscow —> $moscowCountry")
     println("Muhosransk —> $borisovCountry")
+}
+
+fun abstractFactory() {
+    val vehicleFactory = VehicleFactory.createFactory<Car>()
+    val vehicle = vehicleFactory.makeVehicle()
+    println("Vehicle created: $vehicle")
 }
 
 fun singleton() {
