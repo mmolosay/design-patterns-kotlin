@@ -1,4 +1,5 @@
 import decorator.*
+import factorymethod.*
 import observer.Observer
 import strategy.Strategy
 import java.lang.Exception
@@ -15,6 +16,7 @@ fun printMenu() {
             "1. Strategy\n" +
             "2. Observer\n" +
             "3. Decorator\n" +
+            "4. Factory Method\n" +
             "==============================" +
             "")
 }
@@ -39,6 +41,7 @@ fun toggleMenu(input: Int) {
         1 -> strategy()
         2 -> observer()
         3 -> decorator()
+        4 -> factoryMethod()
     }
     println("==============================")
 }
@@ -93,4 +96,16 @@ fun decorator() {
 
     print("John's breakfast: ")
     apple.makeBreakfast()
+}
+
+fun factoryMethod() {
+    val noCountryFound = "No contry found :("
+
+    val nyCountry = CountryFactory().fromCity(City.NewYork)?.name ?: noCountryFound
+    val moscowCountry = CountryFactory().fromCity(City.Moscow)?.name ?: noCountryFound
+    val borisovCountry = CountryFactory().fromCity(City.Muhosransk)?.name ?: noCountryFound
+
+    println("New York —> $nyCountry")
+    println("Moscow —> $moscowCountry")
+    println("Muhosransk —> $borisovCountry")
 }
