@@ -38,10 +38,11 @@ fun getInput(): Int {
 fun toggleMenu(input: Int) {
     println("==============================")
     when(input) {
-        1 -> strategy()
-        2 -> observer()
-        3 -> decorator()
-        4 -> factoryMethod()
+        1    -> strategy()
+        2    -> observer()
+        3    -> decorator()
+        4    -> factoryMethod()
+        else -> println("Invalid input. Try again.")
     }
     println("==============================")
 }
