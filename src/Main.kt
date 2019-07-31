@@ -1,6 +1,7 @@
 import decorator.*
 import factorymethod.*
 import observer.Observer
+import singleton.MouseController
 import strategy.Strategy
 import java.lang.Exception
 
@@ -17,6 +18,7 @@ fun printMenu() {
             "2. Observer\n" +
             "3. Decorator\n" +
             "4. Factory Method\n" +
+            "5. Singleton\n" +
             "==============================" +
             "")
 }
@@ -42,6 +44,8 @@ fun toggleMenu(input: Int) {
         2    -> observer()
         3    -> decorator()
         4    -> factoryMethod()
+        5    -> singleton()
+
         else -> println("Invalid input. Try again.")
     }
     println("==============================")
@@ -109,4 +113,9 @@ fun factoryMethod() {
     println("New York —> $nyCountry")
     println("Moscow —> $moscowCountry")
     println("Muhosransk —> $borisovCountry")
+}
+
+fun singleton() {
+    MouseController.setCoords(10, 25)
+    MouseController.getCoords()
 }
