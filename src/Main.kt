@@ -1,10 +1,10 @@
-import abstractfactory.Car
-import abstractfactory.VehicleFactory
+import abstractfactory.*
+import command.*
 import decorator.*
 import factorymethod.*
-import observer.Observer
-import singleton.MouseController
-import strategy.Strategy
+import observer.*
+import singleton.*
+import strategy.*
 import java.lang.Exception
 
 fun main(args: Array<String>) {
@@ -22,6 +22,7 @@ fun printMenu() {
             "4. Factory Method\n" +
             "5. Abstract Factory\n" +
             "6. Singleton\n" +
+            "7. Command\n" +
             "==============================" +
             "")
 }
@@ -49,6 +50,7 @@ fun toggleMenu(input: Int) {
         4    -> factoryMethod()
         5    -> abstractFactory()
         6    -> singleton()
+        7    -> command()
 
         else -> println("Invalid input. Try again.")
     }
@@ -128,4 +130,20 @@ fun abstractFactory() {
 fun singleton() {
     MouseController.setCoords(10, 25)
     MouseController.getCoords()
+}
+
+fun command() {
+    val toggleLight = object : Command {
+        override fun execute() = println("Button pressed, toggling light...")
+    }
+    val toggleDoor = object : Command {
+        override fun execute() = println("Button pressed, toggling door...")
+    }
+
+    val rc = RemoteController()
+            .addButton(toggleLight)
+            .addButton(toggleDoor)
+            .pressButton(2)
+            .pressButton(1)
+            .pressButton(1)
 }
