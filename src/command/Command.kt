@@ -15,7 +15,11 @@ class InputCommand(val digit: Int) : InformCommand, ExecuteCommand {
     override fun inform() = println("Digit $digit was pressed.")
 
     override fun execute(passDigit: Int) : Boolean {
-        if (digit == passDigit) return true
+        if (digit == passDigit) {
+            println("$digit -> OK")
+            return true
+        }
+        println("$digit -> WRONG")
         return false
     }
 }
@@ -42,15 +46,11 @@ class Vault {
 
     fun confirm(): Boolean {
         var success = true
+
         for (i in 0 until pass.size)
-            with(input[i]) {
-                if (this.execute(pass[i]))
-                    println("$digit -> OK")
-                else {
-                    println("$digit -> WRONG")
-                    success = false
-                }
-            }
+            if (!input[i].execute(pass[i]))
+                success = false
+
         input.clear()
         return success
     }
