@@ -1,5 +1,6 @@
 package command
 
+import java.lang.IllegalArgumentException
 import java.util.Random
 
 interface ExecuteCommand {
@@ -38,6 +39,8 @@ class Vault {
 
     fun enter(digit: Int) : Vault =
             apply {
+                if (digit / 10 != 0)
+                    throw IllegalArgumentException("Please, enter a digit, not a number.")
                 with ( InputCommand(digit) ) {
                     input.add(this)
                     inform()
