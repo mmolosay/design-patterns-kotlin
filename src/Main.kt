@@ -1,16 +1,19 @@
-import abstractfactory.*
-import command.*
-import decorator.*
-import factorymethod.*
-import observer.*
-import singleton.*
-import strategy.*
-import java.lang.Exception
+import abstractfactory.Car
+import abstractfactory.VehicleFactory
+import command.Vault
+import decorator.BreakfastCoffee
+import decorator.BreakfastMeal
+import factorymethod.City
+import factorymethod.CountryFactory
+import observer.Observer
+import singleton.MouseController
+import strategy.Strategy
+import java.util.*
 
 fun main(args: Array<String>) {
     while (true) {
         printMenu()
-        toggleMenu(getInput())
+        toggleMenu(getInput("Select pattern to demonstrate:"))
     }
 }
 
@@ -27,10 +30,10 @@ fun printMenu() {
             "")
 }
 
-fun getInput(): Int {
+fun getInput(msg: String? = null): Int {
     var input: Int
     while (true) {
-        println("Select pattern to demonstrate:")
+        if (msg != null) println(msg)
         try {
             input = readLine()!!.toInt()
         } catch (e: Exception) {
@@ -133,10 +136,18 @@ fun singleton() {
 }
 
 fun command() {
-    Vault()
-        .enter(1)
-        .enter(2)
-        .enter(2)
-        .enter(4)
-        .confirm()
+    val vault = Vault()
+
+    while (true) {
+        vault
+                .enter(getInput("Enter code digit:"))
+                .enter(getInput("Enter code digit:"))
+                .enter(getInput("Enter code digit:"))
+                .enter(getInput("Enter code digit:"))
+
+        if (vault.confirm()){
+            println("Cracked!")
+            break
+        }
+    }
 }
