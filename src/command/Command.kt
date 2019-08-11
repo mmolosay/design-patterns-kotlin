@@ -10,7 +10,7 @@ interface InformCommand {
     fun inform()
 }
 
-class InputCommand(val digit: Int) : InformCommand, ExecuteCommand {
+class InputCommand(private val digit: Int) : InformCommand, ExecuteCommand {
 
     override fun inform() = println("Digit $digit was pressed.")
 
