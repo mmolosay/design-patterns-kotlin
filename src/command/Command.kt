@@ -1,20 +1,41 @@
 package command
 
-interface Command {
-    fun execute()
+interface ExecuteCommand {
+    fun execute(passDigit: Int)
 }
 
-class RemoteController {
+interface InformCommand {
+    fun inform()
+}
 
-    private val buttons = ArrayList<Command>()
+class InputCommand(private val digit: Int) : InformCommand, ExecuteCommand {
 
-    fun addButton(onPressedAction: Command) : RemoteController =
+    override fun inform() = println("Digit $digit was pressed.")
+
+    override fun execute(passDigit: Int) {
+        if (digit == passDigit) println("$digit -> OK")
+        else println("$digit -> WRONG")
+    }
+}
+
+class Vault {
+
+    private val password = arrayOf(1, 2, 3, 4)
+    private val input = arrayListOf<InputCommand>()
+
+    fun enter(digit: Int) : Vault =
             apply {
-                buttons.add(onPressedAction)
+                with (InputCommand(digit)) {
+                    input.add(this)
+                    inform()
+                }
             }
 
-    fun pressButton(button: Int) : RemoteController =
+    fun confirm() : Vault =
             apply {
-                buttons[button - 1].execute()
+                for (i in 0 until password.size)
+                    input[i].execute(password[i])
+
+                input.clear()
             }
 }

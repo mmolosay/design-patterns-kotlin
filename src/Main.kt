@@ -133,17 +133,10 @@ fun singleton() {
 }
 
 fun command() {
-    val toggleLight = object : Command {
-        override fun execute() = println("Button pressed, toggling light...")
-    }
-    val toggleDoor = object : Command {
-        override fun execute() = println("Button pressed, toggling door...")
-    }
-
-    val rc = RemoteController()
-            .addButton(toggleLight)
-            .addButton(toggleDoor)
-            .pressButton(2)
-            .pressButton(1)
-            .pressButton(1)
+    Vault()
+        .enter(1)
+        .enter(2)
+        .enter(2)
+        .enter(4)
+        .confirm()
 }
