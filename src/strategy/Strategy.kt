@@ -1,19 +1,16 @@
 package strategy
 
-class Strategy {
+interface QuackBehavior {
 
-    interface QuackBehavior {
+    fun quack(): String
+}
 
-        fun quack(): String
-    }
+class Duck(private var quackBehavior: QuackBehavior) {
 
-    class Duck(private var quackBehavior: QuackBehavior) {
+    fun performQuack(): String = quackBehavior.quack()
 
-        fun performQuack(): String = quackBehavior.quack()
-
-        fun setQuackBehavior(quackBehavior: QuackBehavior) : Duck {
-            this.quackBehavior = quackBehavior
-            return this // chaining support
-        }
+    fun setQuackBehavior(quackBehavior: QuackBehavior) : Duck {
+        this.quackBehavior = quackBehavior
+        return this // chaining support
     }
 }

@@ -7,13 +7,13 @@ import adapter.huntDuck
 import command.Vault
 import decorator.BreakfastCoffee
 import decorator.BreakfastMeal
-import decorator.Decorator
 import factorymethod.City
 import factorymethod.CountryFactory
-import observer.Observer
+import observer.TextChangedListener
+import observer.TextObserver
 import singleton.MouseController
-import strategy.Strategy
-import java.util.*
+import strategy.Duck
+import strategy.QuackBehavior
 
 fun main(args: Array<String>) {
     while (true) {
@@ -69,21 +69,21 @@ fun toggleMenu(input: Int) {
 
 
 fun strategy() {
-    val commonQuackBehavior = object : Strategy.QuackBehavior {
+    val commonQuackBehavior = object : QuackBehavior {
         override fun quack(): String = "\'Quack!\'"
     }
-    val rubberQuackBehavior = object : Strategy.QuackBehavior {
+    val rubberQuackBehavior = object : QuackBehavior {
         override fun quack(): String = "\'Squeeeeek\'"
     }
-    val silentQuackBehavior = object : Strategy.QuackBehavior {
+    val silentQuackBehavior = object : QuackBehavior {
         override fun quack(): String = "\'...\'"
     }
 
-    val mallardDuck = Strategy.Duck(commonQuackBehavior)
-    val rubberDuck = Strategy.Duck(rubberQuackBehavior)
+    val mallardDuck = Duck(commonQuackBehavior)
+    val rubberDuck = Duck(rubberQuackBehavior)
 
-    val toyDuck = Strategy.Duck(silentQuackBehavior)
-    val decoyDuck = Strategy.Duck(commonQuackBehavior)
+    val toyDuck = Duck(silentQuackBehavior)
+    val decoyDuck = Duck(commonQuackBehavior)
 
     println("Mallard duck says ${mallardDuck.performQuack()}.")
     println("Rubber duck says ${rubberDuck.performQuack()} when it is squeezed.")
@@ -98,8 +98,8 @@ fun strategy() {
 }
 
 fun observer() {
-    val textObserver = Observer.TextObserver().apply {
-        listener = Observer.TextChangedListener()
+    val textObserver = TextObserver().apply {
+        listener = TextChangedListener()
     }
 
     with(textObserver) {
