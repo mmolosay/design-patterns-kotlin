@@ -7,6 +7,8 @@ import adapter.huntDuck
 import command.Vault
 import decorator.BreakfastCoffee
 import decorator.BreakfastMeal
+import facade.SmartHouse
+import facade.UniqueRemoteController
 import factorymethod.City
 import factorymethod.CountryFactory
 import observer.TextChangedListener
@@ -32,6 +34,7 @@ fun printMenu() {
             "6. Singleton\n" +
             "7. Command\n" +
             "8. Adapter\n" +
+            "9. Facade\n" +
             "==============================" +
             "")
 }
@@ -61,6 +64,7 @@ fun toggleMenu(input: Int) {
         6    -> singleton()
         7    -> command()
         8    -> adapter()
+        9    -> facade()
 
         else -> println("Invalid input. Try again.")
     }
@@ -168,4 +172,12 @@ fun adapter() {
   //huntDuck(wildTurkey)
   //hunter hears 'Gobble-gobble' and sees smth flies too short — it's turkey, not a duck!
     huntDuck(turkeyInDucksClothing) // turkey in ducks clothing cheated hunter!
+}
+
+fun facade() {
+    val rc = UniqueRemoteController(SmartHouse())
+    rc.atWakeUp()
+    rc.atHomeDeparture()
+    rc.atHomeArrival()
+    rc.atSleep()
 }
