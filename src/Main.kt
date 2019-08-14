@@ -1,8 +1,13 @@
 import abstractfactory.Car
 import abstractfactory.VehicleFactory
+import adapter.MallardDuck
+import adapter.TurkeyAdapter
+import adapter.WildTurkey
+import adapter.huntDuck
 import command.Vault
 import decorator.BreakfastCoffee
 import decorator.BreakfastMeal
+import decorator.Decorator
 import factorymethod.City
 import factorymethod.CountryFactory
 import observer.Observer
@@ -26,6 +31,7 @@ fun printMenu() {
             "5. Abstract Factory\n" +
             "6. Singleton\n" +
             "7. Command\n" +
+            "8. Adapter\n" +
             "==============================" +
             "")
 }
@@ -54,6 +60,7 @@ fun toggleMenu(input: Int) {
         5    -> abstractFactory()
         6    -> singleton()
         7    -> command()
+        8    -> adapter()
 
         else -> println("Invalid input. Try again.")
     }
@@ -150,4 +157,15 @@ fun command() {
             break
         }
     }
+}
+
+fun adapter() {
+    val mallardDuck = MallardDuck()
+    val wildTurkey = WildTurkey()
+    val turkeyInDucksClothing = TurkeyAdapter(wildTurkey)
+
+    huntDuck(mallardDuck)
+  //huntDuck(wildTurkey)
+  //hunter hears 'Gobble-gobble' and sees smth flies too short — it's turkey, not a duck!
+    huntDuck(turkeyInDucksClothing) // turkey in ducks clothing cheated hunter!
 }
