@@ -11,6 +11,8 @@ import facade.SmartHouse
 import facade.UniqueRemoteController
 import factorymethod.City
 import factorymethod.CountryFactory
+import iterator.Collection
+import iterator.CollectionItem
 import observer.TextChangedListener
 import observer.TextObserver
 import singleton.MouseController
@@ -38,6 +40,7 @@ fun printMenu() {
             "8. Adapter\n" +
             "9. Facade\n" +
             "10. Template Method\n" +
+            "11. Iterator\n" +
             "==============================" +
             "")
 }
@@ -69,6 +72,7 @@ fun toggleMenu(input: Int) {
         8    -> adapter()
         9    -> facade()
         10   -> templateMethod()
+        11   -> iterator()
 
         else -> println("Invalid input. Try again.")
     }
@@ -197,4 +201,15 @@ fun templateMethod() {
     println("Making tea:")
     tea.make()
     println()
+}
+
+fun iterator() {
+    val collection = Collection(arrayListOf(
+            CollectionItem("apple", "red"),
+            CollectionItem("lemon", "yellow"),
+            CollectionItem("onion", "white")
+    ))
+    val iterator = collection.createIterator()
+
+    while (iterator.hasNext()) println(iterator.next())
 }
