@@ -16,6 +16,8 @@ import observer.TextObserver
 import singleton.MouseController
 import strategy.Duck
 import strategy.QuackBehavior
+import templatemethod.Coffee
+import templatemethod.Tea
 
 fun main(args: Array<String>) {
     while (true) {
@@ -35,6 +37,7 @@ fun printMenu() {
             "7. Command\n" +
             "8. Adapter\n" +
             "9. Facade\n" +
+            "10. Template Method\n" +
             "==============================" +
             "")
 }
@@ -65,6 +68,7 @@ fun toggleMenu(input: Int) {
         7    -> command()
         8    -> adapter()
         9    -> facade()
+        10   -> templateMethod()
 
         else -> println("Invalid input. Try again.")
     }
@@ -170,7 +174,7 @@ fun adapter() {
 
     huntDuck(mallardDuck)
   //huntDuck(wildTurkey)
-  //hunter hears 'Gobble-gobble' and sees smth flies too short — it's turkey, not a duck!
+  //hunter hears 'Gobble-gobble' and sees smth flies not long enough — it's turkey, not a duck!
     huntDuck(turkeyInDucksClothing) // turkey in ducks clothing cheated hunter!
 }
 
@@ -180,4 +184,17 @@ fun facade() {
     rc.atHomeDeparture()
     rc.atHomeArrival()
     rc.atSleep()
+}
+
+fun templateMethod() {
+    val coffee = Coffee()
+    val tea = Tea()
+
+    println("Making coffee:")
+    coffee.make()
+    println()
+
+    println("Making tea:")
+    tea.make()
+    println()
 }
