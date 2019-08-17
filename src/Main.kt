@@ -16,6 +16,7 @@ import iterator.CollectionItem
 import observer.TextChangedListener
 import observer.TextObserver
 import singleton.MouseController
+import state.ATM
 import strategy.Duck
 import strategy.QuackBehavior
 import templatemethod.Coffee
@@ -41,6 +42,7 @@ fun printMenu() {
             "9. Facade\n" +
             "10. Template Method\n" +
             "11. Iterator\n" +
+            "12. State\n" +
             "==============================" +
             "")
 }
@@ -73,6 +75,7 @@ fun toggleMenu(input: Int) {
         9    -> facade()
         10   -> templateMethod()
         11   -> iterator()
+        12   -> state()
 
         else -> println("Invalid input. Try again.")
     }
@@ -212,4 +215,17 @@ fun iterator() {
     val iterator = collection.createIterator()
 
     while (iterator.hasNext()) println(iterator.next())
+}
+
+fun state() {
+    val atm = ATM(5000)
+
+    atm.removeCard()
+    atm.withdrawCash(1000)
+    atm.insertCard()
+    atm.removeCard()
+    atm.insertCard()
+    atm.withdrawCash(1000)
+    atm.withdrawCash(5000)
+    atm.removeCard()
 }
