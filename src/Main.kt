@@ -5,6 +5,9 @@ import adapter.TurkeyAdapter
 import adapter.WildTurkey
 import adapter.huntDuck
 import command.Vault
+import complexpatterns.CountingDuckFuctory
+import complexpatterns.DuckSimulator
+import complexpatterns.QuackCounter
 import decorator.BreakfastCoffee
 import decorator.BreakfastMeal
 import facade.SmartHouse
@@ -43,6 +46,7 @@ fun printMenu() {
             "10. Template Method\n" +
             "11. Iterator\n" +
             "12. State\n" +
+            "13. Complex Patterns\n" +
             "==============================" +
             "")
 }
@@ -76,6 +80,7 @@ fun toggleMenu(input: Int) {
         10   -> templateMethod()
         11   -> iterator()
         12   -> state()
+        13   -> complexPatterns()
 
         else -> println("Invalid input. Try again.")
     }
@@ -228,4 +233,10 @@ fun state() {
     atm.withdrawCash(1000)
     atm.withdrawCash(5000)
     atm.removeCard()
+}
+
+fun complexPatterns() {
+    val duckSimulator = DuckSimulator
+
+    duckSimulator.simulate(CountingDuckFuctory())
 }
