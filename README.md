@@ -63,15 +63,15 @@ class TextObserver {
 #### Usage
 
 ```kotlin
-    val textObserver = TextObserver().apply {
-        listener = TextChangedListener()
-    }
+val textObserver = TextObserver().apply {
+    listener = TextChangedListener()
+}
 
-    with(textObserver) {
-        text = "Observer"
-        text = "pattern"
-        text = "demonstration"
-    }
+with(textObserver) {
+    text = "Observer"
+    text = "pattern"
+    text = "demonstration"
+}
 ```
 
 #### Output
@@ -92,7 +92,6 @@ Text is changed pattern    -> demonstration
 #### Example
 ```kotlin
 interface QuackBehavior {
-
     fun quack(): String
 }
 
@@ -109,21 +108,21 @@ class Duck(private var quackBehavior: QuackBehavior) {
 #### Usage
 
 ```kotlin
-    val commonQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'Quack!\'" }
-    val rubberQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'Squeeeeek\'" }
-    val silentQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'...\'" }
+val commonQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'Quack!\'" }
+val rubberQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'Squeeeeek\'" }
+val silentQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'...\'" }
 
-    val mallardDuck = Duck(commonQuackBehavior)
-    val rubberDuck = Duck(rubberQuackBehavior)
-    val toyDuck = Duck(silentQuackBehavior)
-    val decoyDuck = Duck(commonQuackBehavior)
-	
-	// printing quack behaviors
+val mallardDuck = Duck(commonQuackBehavior)
+val rubberDuck = Duck(rubberQuackBehavior)
+val toyDuck = Duck(silentQuackBehavior)
+val decoyDuck = Duck(commonQuackBehavior)
 
-    toyDuck.setQuackBehavior(commonQuackBehavior)
-    rubberDuck.setQuackBehavior(silentQuackBehavior)
-	
-	// printing changed quack behaviors
+// printing quack behaviors
+
+toyDuck.setQuackBehavior(commonQuackBehavior)
+rubberDuck.setQuackBehavior(silentQuackBehavior)
+
+// printing changed quack behaviors
 ```
 
 #### Output
@@ -203,19 +202,19 @@ class Vault {
 #### Usage
 
 ```kotlin
-    val vault = Vault()
+val vault = Vault()
 
-    while (true) {
-        vault
-                .enter(getInput("Enter code digit:"))
-                .enter(getInput("Enter code digit:"))
-                .enter(getInput("Enter code digit:"))
-                .enter(getInput("Enter code digit:"))
+while (true) {
+    vault
+            .enter(getInput("Enter code digit:"))
+            .enter(getInput("Enter code digit:"))
+            .enter(getInput("Enter code digit:"))
+            .enter(getInput("Enter code digit:"))
 
-        if (vault.confirm()) break
-    }
+    if (vault.confirm()) break
+}
 
-    println("Cracked!")
+println("Cracked!")
 ```
 
 #### Output
@@ -296,16 +295,16 @@ class ATM(cashAmount: Int) : StateMachine {
 #### Usage
 
 ```kotlin
-    val atm = ATM(5000)
+val atm = ATM(5000)
 
-    atm.removeCard()
-    atm.withdrawCash(1000)
-    atm.insertCard()
-    atm.removeCard()
-    atm.insertCard()
-    atm.withdrawCash(1000)
-    atm.withdrawCash(5000)
-    atm.removeCard()
+atm.removeCard()
+atm.withdrawCash(1000)
+atm.insertCard()
+atm.removeCard()
+atm.insertCard()
+atm.withdrawCash(1000)
+atm.withdrawCash(5000)
+atm.removeCard()
 ```
 
 #### Output
@@ -368,14 +367,14 @@ class Collection() {
 #### Usage
 
 ```kotlin
-    val collection = Collection(arrayListOf(
-            CollectionItem("apple", "red"),
-            CollectionItem("lemon", "yellow"),
-            CollectionItem("onion", "white")
-    ))
-    val iterator = collection.createIterator()
+val collection = Collection(arrayListOf(
+        CollectionItem("apple", "red"),
+        CollectionItem("lemon", "yellow"),
+        CollectionItem("onion", "white")
+))
+val iterator = collection.createIterator()
 
-    while (iterator.hasNext()) println(iterator.next())
+while (iterator.hasNext()) println(iterator.next())
 ```
 
 #### Output
@@ -430,14 +429,14 @@ class Tea : CaffeineBeverage() {
 #### Usage
 
 ```kotlin
-    val coffee = Coffee()
-    val tea = Tea()
+val coffee = Coffee()
+val tea = Tea()
 
-    println("Making coffee:")
-    coffee.make()
+println("Making coffee:")
+coffee.make()
 
-    println("Making tea:")
-    tea.make()
+println("Making tea:")
+tea.make()
 ```
 
 #### Output
@@ -500,15 +499,15 @@ class CountryFactory {
 #### Usage
 
 ```kotlin
-    val noCountryFound = "No contry found :("
+val noCountryFound = "No contry found :("
 
-    val nyCountry = CountryFactory().fromCity(City.NewYork)?.name ?: noCountryFound
-    val moscowCountry = CountryFactory().fromCity(City.Moscow)?.name ?: noCountryFound
-    val borisovCountry = CountryFactory().fromCity(City.Muhosransk)?.name ?: noCountryFound
+val nyCountry = CountryFactory().fromCity(City.NewYork)?.name ?: noCountryFound
+val moscowCountry = CountryFactory().fromCity(City.Moscow)?.name ?: noCountryFound
+val borisovCountry = CountryFactory().fromCity(City.Muhosransk)?.name ?: noCountryFound
 
-    println("New York —> $nyCountry")
-    println("Moscow —> $moscowCountry")
-    println("Muhosransk —> $borisovCountry")
+println("New York —> $nyCountry")
+println("Moscow —> $moscowCountry")
+println("Muhosransk —> $borisovCountry")
 ```
 
 #### Output
@@ -551,8 +550,8 @@ object MouseController {
 #### Usage
 
 ```kotlin
-    val coords = MouseController.coords
-    MouseController.coords = Pair(5, 10)
+val coords = MouseController.coords
+MouseController.coords = Pair(5, 10)
 ```
 
 #### Output
@@ -605,9 +604,9 @@ class BicycleFactory : VehicleFactory() {
 #### Usage
 
 ```kotlin
-    val vehicleFactory = VehicleFactory.createFactory<Car>()
-    val vehicle = vehicleFactory.makeVehicle()
-    println("Vehicle created: $vehicle")
+val vehicleFactory = VehicleFactory.createFactory<Car>()
+val vehicle = vehicleFactory.makeVehicle()
+println("Vehicle created: $vehicle")
 ```
 
 #### Output
@@ -672,14 +671,14 @@ fun huntDuck(duck: Duck) {
 #### Usage
 
 ```kotlin
-    val mallardDuck = MallardDuck()
-    val wildTurkey = WildTurkey()
-    val turkeyInDucksClothing = TurkeyAdapter(wildTurkey)
+val mallardDuck = MallardDuck()
+val wildTurkey = WildTurkey()
+val turkeyInDucksClothing = TurkeyAdapter(wildTurkey)
 
-    huntDuck(mallardDuck)
-  //huntDuck(wildTurkey)
-  //hunter hears 'Gobble-gobble' and sees smth flies not far enough — it's turkey, not a duck!
-    huntDuck(turkeyInDucksClothing) // turkey in ducks clothing cheated hunter!
+huntDuck(mallardDuck)
+// huntDuck(wildTurkey)
+// hunter hears 'Gobble-gobble' and sees smth flies not far enough — it's turkey, not a duck!
+huntDuck(turkeyInDucksClothing) // turkey in ducks clothing cheated hunter!
 ```
 
 #### Output
@@ -745,13 +744,13 @@ class BreakfastMeal(private val c: BreakfastComponent, private val mealName: Str
 #### Usage
 
 ```kotlin
-    val coffee = BreakfastCoffee()
-    val cornflakes = BreakfastMeal(coffee, "cornflakes")
-    val sandwich  = BreakfastMeal(cornflakes, "sandwich")
-    val apple        = BreakfastMeal(sandwich, "apple")
+val coffee = BreakfastCoffee()
+val cornflakes = BreakfastMeal(coffee, "cornflakes")
+val sandwich  = BreakfastMeal(cornflakes, "sandwich")
+val apple        = BreakfastMeal(sandwich, "apple")
 
-    print("John's breakfast: ")
-    apple.makeBreakfast()
+print("John's breakfast: ")
+apple.makeBreakfast()
 ```
 
 #### Output
