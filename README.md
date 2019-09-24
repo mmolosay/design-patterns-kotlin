@@ -32,6 +32,7 @@ Behavioral
 > In Kotlin, this pattern could be implemented using **delegates**.
 >
 > **Source:** [wikipeadia.org](https://en.wikipedia.org/wiki/Observer_pattern "wikipeadia.org")
+>
 >  **More about delegation:** [kotlinlang.org](https://kotlinlang.org/docs/reference/delegation.html "Delegation")
 
 #### Example
@@ -524,6 +525,7 @@ Muhosransk –> No contry found :(
 > Like delegates, this pattern is embedded in Kotlin as an `object` expression.
 >
 > **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Factory_method_pattern "wikipedia.org")
+>
 > **More about objects:** [kotlinlang.org](https://kotlinlang.org/docs/reference/object-declarations.html "kotlinlang.org")
 
 #### Example
