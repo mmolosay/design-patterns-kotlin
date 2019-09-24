@@ -386,7 +386,7 @@ onion: white
 [Template Method](/src/templatemethod/TemplateMethod.kt)
 -----------
 
->The template method prepresents a method in a superclass, usually an abstract superclass, that defines the skeleton of an operation in terms of a number of high-level steps. These steps are themselves implemented by additional helper methods in the same class as the template method.
+>The template method represents a method in a superclass, usually an abstract superclass, that defines the skeleton of an operation in terms of a number of high-level steps. These steps are themselves implemented by additional helper methods in the same class as the template method.
 >
 > **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Template_method_pattern "wikipedia.org")
 
