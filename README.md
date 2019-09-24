@@ -5,20 +5,20 @@ Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patt
 ## Table of Contents
 
 * [Behavioral Patterns](#behavioral)
- * [Observer / Listener](#observer-listener)
- * [Strategy](#strategy)
- * [Command](#command)
- * [State](#state)
- * [Iterator](#iterator)
- * [Template Method](#template-method)
+    * [Observer / Listener](#observer-listener)
+    * [Strategy](#strategy)
+    * [Command](#command)
+    * [State](#state)
+    * [Iterator](#iterator)
+    * [Template Method](#template-method)
 * [Creational Patterns](#creational)
- * [Factory Method](#factory-method)
- * [Singleton](#singleton)
- * [Abstract Factory](#abstract-factory)
+    * [Factory Method](#factory-method)
+    * [Singleton](#singleton)
+    * [Abstract Factory](#abstract-factory)
 * [Structural Patterns](#structural)
- * [Adapter](#adapter)
- * [Decorator](#decorator)
- * [Facade](#facade)
+    * [Adapter](#adapter)
+    * [Decorator](#decorator)
+    * [Facade](#facade)
 
 Behavioral
 ========
@@ -461,7 +461,7 @@ Creational
 >
 >**Source:** [wikipedia.org](http://en.wikipedia.org/wiki/Creational_pattern)
 
-[Factory Mehtod](/src/factorymethod/FactoryMethod.kt)
+[Factory Method](/src/factorymethod/FactoryMethod.kt)
 -----------
 
 > The factory method pattern uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method – either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes – rather than by calling a constructor.
@@ -808,4 +808,3 @@ Greeting the user...
 Preparing the desktop...
 PC is ready!
 ```
-
