@@ -1,6 +1,5 @@
 # Design Patterns In Kotlin
-Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patterns-In-Kotlin#behavioral "Design-Patterns-In-Kotlin") by [dbacinski](https://github.com/dbacinski "dbacinski"), be sure to check him out!
-
+Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patterns-In-Kotlin#behavioral "Design-Patterns-In-Kotlin") by [dbacinski](https://github.com/dbacinski "dbacinski"), be sure to check him out!  
 *You can move to Kotlin file by clicking on a pattern title.*
 
 ## Table of Contents
@@ -29,11 +28,10 @@ Behavioral
 
 [Observer / Listener](/src/observer/Observer.kt)
 --------
-> The observer pattern has an object (called the subject), which maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
+> The observer pattern has an object (called the subject), which maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.  
 > In Kotlin, this pattern could be implemented using **delegates**.
 >
-> **Source:** [wikipeadia.org](https://en.wikipedia.org/wiki/Observer_pattern "wikipeadia.org")
->
+> **Source:** [wikipeadia.org](https://en.wikipedia.org/wiki/Observer_pattern "wikipeadia.org")  
 >  **More about delegation:** [kotlinlang.org](https://kotlinlang.org/docs/reference/delegation.html "Delegation")
 
 #### Example
@@ -521,11 +519,10 @@ Muhosransk –> No contry found :(
 [Singleton](/src/singleton/Singleton.kt)
 -----------
 
-> The singleton pattern restricts the instantiation of a class to one "single" instance. This is useful when exactly one object is needed to coordinate actions across the system.
+> The singleton pattern restricts the instantiation of a class to one "single" instance. This is useful when exactly one object is needed to coordinate actions across the system.  
 > Like delegates, this pattern is embedded in Kotlin as an `object` expression.
 >
-> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Factory_method_pattern "wikipedia.org")
->
+> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Factory_method_pattern "wikipedia.org")  
 > **More about objects:** [kotlinlang.org](https://kotlinlang.org/docs/reference/object-declarations.html "kotlinlang.org")
 
 #### Example
