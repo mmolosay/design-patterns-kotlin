@@ -5,7 +5,7 @@ Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patt
 ## Table of Contents
 
 * [Behavioral Patterns](#behavioral)
-    * [Observer / Listener](#observer-listener)
+    * [Observer / Listener](#observer--listener)
     * [Strategy](#strategy)
     * [Command](#command)
     * [State](#state)
