@@ -31,7 +31,7 @@ Behavioral
 > The observer pattern has an object (called the subject), which maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.  
 > In Kotlin, this pattern could be implemented using **delegates**.
 >
-> **Source:** [wikipeadia.org](https://en.wikipedia.org/wiki/Observer_pattern "wikipeadia.org")  
+> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Observer_pattern "wikipeadia.org")  
 >  **More about delegation:** [kotlinlang.org](https://kotlinlang.org/docs/reference/delegation.html "Delegation")
 
 #### Example
