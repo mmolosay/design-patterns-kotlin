@@ -9,8 +9,7 @@ class Duck(private var quackBehavior: QuackBehavior) {
 
     fun performQuack(): String = quackBehavior.quack()
 
-    fun setQuackBehavior(quackBehavior: QuackBehavior) : Duck {
+    fun setQuackBehavior(quackBehavior: QuackBehavior) : Duck = apply {
         this.quackBehavior = quackBehavior
-        return this // chaining support
     }
 }

@@ -15,14 +15,15 @@ class InputCommand(private val digit: Int) : InformCommand, ExecuteCommand {
 
     override fun inform() = println("Digit $digit was pressed.")
 
-    override fun execute(passDigit: Int) : Boolean {
+    override fun execute(passDigit: Int) : Boolean =
         if (digit == passDigit) {
             println("$digit -> OK")
-            return true
+            true
         }
-        println("$digit -> WRONG")
-        return false
-    }
+        else {
+            println("$digit -> WRONG")
+            false
+        }
 }
 
 class Vault {
@@ -37,20 +38,19 @@ class Vault {
     )
     private val input = arrayListOf<InputCommand>()
 
-    fun enter(digit: Int) : Vault =
-            apply {
-                if (digit / 10 != 0)
-                    throw IllegalArgumentException("Please, enter a digit, not a number.")
-                with ( InputCommand(digit) ) {
-                    input.add(this)
-                    inform()
-                }
-            }
+    fun enter(digit: Int): Vault = apply {
+        if (digit / 10 != 0)
+            throw IllegalArgumentException("Please, enter a digit, not a number.")
+        with(InputCommand(digit)) {
+            input.add(this)
+            inform()
+        }
+    }
 
     fun confirm(): Boolean {
         var success = true
 
-        for (i in 0 until pass.size)
+        for (i in pass.indices)
             if (!input[i].execute(pass[i]))
                 success = false
 

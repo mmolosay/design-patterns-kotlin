@@ -5,7 +5,6 @@ import java.lang.IllegalArgumentException
 interface Vehicle
 
 class Car : Vehicle
-
 class Bicycle : Vehicle
 
 abstract class VehicleFactory {
@@ -17,7 +16,6 @@ abstract class VehicleFactory {
             return when(T::class) {
                 Car::class     -> CarFactory()
                 Bicycle::class -> BicycleFactory()
-
                 else           -> throw IllegalArgumentException()
             }
         }

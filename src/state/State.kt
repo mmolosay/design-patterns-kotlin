@@ -55,6 +55,5 @@ class ATM(cashAmount: Int) : StateMachine {
     override fun removeCard() = state.removeCard()
     override fun withdrawCash(amount: Int) = state.withdrawCash(amount)
 
-    override fun setState(state: State) : StateMachine =
-        apply { this.state = state }
+    override fun setState(state: State) : StateMachine = apply { this.state = state }
 }

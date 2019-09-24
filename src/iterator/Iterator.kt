@@ -18,9 +18,7 @@ class Iterator(private val items: ArrayList<CollectionItem>) : IteratorBehavior 
     private var position = 0
 
     override fun hasNext(): Boolean = (position < items.size)
-
     override fun next(): Any = items[position++]
-
     override fun reset() { position = 0 }
 }
 

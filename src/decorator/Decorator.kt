@@ -7,19 +7,15 @@ interface BreakfastComponent {
 
 class BreakfastCoffee : BreakfastComponent {
 
-    override fun addMeal() {
-        // John ALWAYS starts morning with coffee
-        println(" and, of course, coffee")
-    }
+    // John ALWAYS starts morning with coffee
+    override fun addMeal() = println(" and, of course, coffee.")
 }
 
 abstract class Decorator(c: BreakfastComponent) : BreakfastComponent {
 
     private var component: BreakfastComponent = c
 
-    override fun addMeal() {
-        component.addMeal()
-    }
+    override fun addMeal() = component.addMeal()
 
     fun makeBreakfast() = addMeal()
 }

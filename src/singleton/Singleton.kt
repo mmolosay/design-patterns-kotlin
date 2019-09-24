@@ -2,18 +2,15 @@ package singleton
 
 object MouseController {
 
-    private var x: Int = 0
-    private var y: Int = 0
+    var coords = Pair(0, 0)
+        get() {
+            println("Getting coordingates of $this -> (${field.first}, ${field.second})")
+            return field
+        }
+        set(value) {
+            println("Setting coordinates of $this -> (${value.first}, ${value.second})")
+            field = value
+        }
 
-    init {
-        println("Initializing: $this")
-    }
-
-    fun setCoords(x: Int = 0, y: Int = 0) {
-        this.x = x
-        this.y = y
-        println("Changing coordinates: $this")
-    }
-
-    fun getCoords() = println("Getting coordingates: x: $x, y: $y, $this")
+    init { println("Initializing $this") }
 }

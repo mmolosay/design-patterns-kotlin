@@ -7,11 +7,9 @@ import adapter.huntDuck
 import command.Vault
 import complexpatterns.CountingDuckFuctory
 import complexpatterns.DuckSimulator
-import complexpatterns.QuackCounter
 import decorator.BreakfastCoffee
 import decorator.BreakfastMeal
-import facade.SmartHouse
-import facade.UniqueRemoteController
+import facade.PC
 import factorymethod.City
 import factorymethod.CountryFactory
 import iterator.Collection
@@ -107,7 +105,7 @@ fun strategy() {
 
     println("Mallard duck says ${mallardDuck.performQuack()}.")
     println("Rubber duck says ${rubberDuck.performQuack()} when it is squeezed.")
-    println("Toy duck says ${toyDuck.performQuack()}. Seems like it is primitive toy.")
+    println("Toy duck says ${toyDuck.performQuack()}. Seems like it is a primitive toy.")
     println("Decoy duck says ${decoyDuck.performQuack()}, hunter is here.")
 
     toyDuck.setQuackBehavior(commonQuackBehavior)
@@ -158,8 +156,8 @@ fun abstractFactory() {
 }
 
 fun singleton() {
-    MouseController.setCoords(10, 25)
-    MouseController.getCoords()
+    val coords = MouseController.coords
+    MouseController.coords = Pair(5, 10)
 }
 
 fun command() {
@@ -172,11 +170,10 @@ fun command() {
                 .enter(getInput("Enter code digit:"))
                 .enter(getInput("Enter code digit:"))
 
-        if (vault.confirm()){
-            println("Cracked!")
-            break
-        }
+        if (vault.confirm()) break
     }
+
+    println("Cracked!")
 }
 
 fun adapter() {
@@ -186,17 +183,11 @@ fun adapter() {
 
     huntDuck(mallardDuck)
   //huntDuck(wildTurkey)
-  //hunter hears 'Gobble-gobble' and sees smth flies not long enough — it's turkey, not a duck!
+  //hunter hears 'Gobble-gobble' and sees smth flies not far enough — it's turkey, not a duck!
     huntDuck(turkeyInDucksClothing) // turkey in ducks clothing cheated hunter!
 }
 
-fun facade() {
-    val rc = UniqueRemoteController(SmartHouse())
-    rc.atWakeUp()
-    rc.atHomeDeparture()
-    rc.atHomeArrival()
-    rc.atSleep()
-}
+fun facade() = PC().start()
 
 fun templateMethod() {
     val coffee = Coffee()
