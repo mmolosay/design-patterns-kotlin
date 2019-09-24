@@ -497,7 +497,7 @@ class CountryFactory {
 #### Usage
 
 ```kotlin
-val noCountryFound = "No contry found :("
+val noCountryFound = "No country found :("
 
 val nyCountry = CountryFactory().fromCity(City.NewYork)?.name ?: noCountryFound
 val moscowCountry = CountryFactory().fromCity(City.Moscow)?.name ?: noCountryFound
@@ -513,7 +513,7 @@ println("Muhosransk —> $borisovCountry")
 ```
 New York     –> United States of America
 Moscow       –> Russia
-Muhosransk –> No contry found :(
+Muhosransk –> No country found :(
 ```
 
 [Singleton](/src/singleton/Singleton.kt)
@@ -532,7 +532,7 @@ object MouseController {
 
     var coords = Pair(0, 0)
         get() {
-            println("Getting coordingates of $this -> (${field.first}, ${field.second})")
+            println("Getting coordinates of $this -> (${field.first}, ${field.second})")
             return field
         }
         set(value) {
