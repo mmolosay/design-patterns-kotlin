@@ -138,7 +138,7 @@ fun decorator() {
 }
 
 fun factoryMethod() {
-    val noCountryFound = "No contry found :("
+    val noCountryFound = "No country found :("
 
     val nyCountry = CountryFactory().fromCity(City.NewYork)?.name ?: noCountryFound
     val moscowCountry = CountryFactory().fromCity(City.Moscow)?.name ?: noCountryFound
