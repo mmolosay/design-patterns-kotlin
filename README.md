@@ -513,7 +513,7 @@ println("Muhosransk —> $borisovCountry")
 ```
 New York     –> United States of America
 Moscow       –> Russia
-Muhosransk –> No country found :(
+Muhosransk   –> No country found :(
 ```
 
 [Singleton](/src/singleton/Singleton.kt)
