@@ -1,6 +1,5 @@
 # Design Patterns In Kotlin
-Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patterns-In-Kotlin#behavioral "Design-Patterns-In-Kotlin") by [dbacinski](https://github.com/dbacinski "dbacinski"), be sure to check him out!
-
+Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patterns-In-Kotlin#behavioral "Design-Patterns-In-Kotlin") by [dbacinski](https://github.com/dbacinski "dbacinski"), be sure to check him out!  
 *You can move to Kotlin file by clicking on a pattern title.*
 
 ## Table of Contents
@@ -16,6 +15,7 @@ Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patt
     * [Factory Method](#factory-method)
     * [Singleton](#singleton)
     * [Abstract Factory](#abstract-factory)
+    * [Builder](#builder)
 * [Structural Patterns](#structural)
     * [Adapter](#adapter)
     * [Decorator](#decorator)
@@ -29,11 +29,10 @@ Behavioral
 
 [Observer / Listener](/src/observer/Observer.kt)
 --------
-> The observer pattern has an object (called the subject), which maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
+> The observer pattern has an object (called the subject), which maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.  
 > In Kotlin, this pattern could be implemented using **delegates**.
 >
-> **Source:** [wikipeadia.org](https://en.wikipedia.org/wiki/Observer_pattern "wikipeadia.org")
->
+> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Observer_pattern "wikipeadia.org")  
 >  **More about delegation:** [kotlinlang.org](https://kotlinlang.org/docs/reference/delegation.html "Delegation")
 
 #### Example
@@ -388,7 +387,7 @@ onion: white
 [Template Method](/src/templatemethod/TemplateMethod.kt)
 -----------
 
->The template method prepresents a method in a superclass, usually an abstract superclass, that defines the skeleton of an operation in terms of a number of high-level steps. These steps are themselves implemented by additional helper methods in the same class as the template method.
+>The template method represents a method in a superclass, usually an abstract superclass, that defines the skeleton of an operation in terms of a number of high-level steps. These steps are themselves implemented by additional helper methods in the same class as the template method.
 >
 > **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Template_method_pattern "wikipedia.org")
 
@@ -499,7 +498,7 @@ class CountryFactory {
 #### Usage
 
 ```kotlin
-val noCountryFound = "No contry found :("
+val noCountryFound = "No country found :("
 
 val nyCountry = CountryFactory().fromCity(City.NewYork)?.name ?: noCountryFound
 val moscowCountry = CountryFactory().fromCity(City.Moscow)?.name ?: noCountryFound
@@ -515,17 +514,16 @@ println("Muhosransk —> $borisovCountry")
 ```
 New York     –> United States of America
 Moscow       –> Russia
-Muhosransk –> No contry found :(
+Muhosransk   –> No country found :(
 ```
 
 [Singleton](/src/singleton/Singleton.kt)
 -----------
 
-> The singleton pattern restricts the instantiation of a class to one "single" instance. This is useful when exactly one object is needed to coordinate actions across the system.
+> The singleton pattern restricts the instantiation of a class to one "single" instance. This is useful when exactly one object is needed to coordinate actions across the system.  
 > Like delegates, this pattern is embedded in Kotlin as an `object` expression.
 >
-> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Factory_method_pattern "wikipedia.org")
->
+> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Factory_method_pattern "wikipedia.org")  
 > **More about objects:** [kotlinlang.org](https://kotlinlang.org/docs/reference/object-declarations.html "kotlinlang.org")
 
 #### Example
@@ -535,7 +533,7 @@ object MouseController {
 
     var coords = Pair(0, 0)
         get() {
-            println("Getting coordingates of $this -> (${field.first}, ${field.second})")
+            println("Getting coordinates of $this -> (${field.first}, ${field.second})")
             return field
         }
         set(value) {
@@ -613,6 +611,109 @@ println("Vehicle created: $vehicle")
 
 ```
 Vehicle created: abstractfactory.Car@6093dd95
+```
+
+[Builder](/src/builder/Builder.kt)
+-----------
+
+> The builder pattern provides a flexible solution to various object creation problems. The intent of the builder pattern is to separate the construction of a complex object from its representation.
+>
+> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Builder_pattern "wikipedia.org")
+
+#### Example
+
+```kotlin
+class Result {
+
+    fun setTitle(text: String) = println("Setting title -> $text.")
+    fun setTitleColor(color: String) = println("Setting title color -> $color.")
+    fun setInfo(text: String) = println("Setting info -> $text.")
+    fun setInfoColor(color: String) = println("Setting info color -> $color.")
+    fun setIcon(iconBytes: ByteArray) = println("Setting image -> ${iconBytes.size} bytes.")
+    fun show() = println("Showing result.")
+}
+
+class ColoredText {
+    var text: String = ""
+    var color: String = "#000000"
+}
+
+class ResultBuilder() {
+
+    constructor(init: ResultBuilder.() -> Unit) : this() {
+        init()
+    }
+
+    private var titleView = ColoredText()
+    private var infoView = ColoredText()
+    private var icon = File("")
+
+    fun title(setter: ColoredText.() -> Unit) {
+        titleView = ColoredText().apply(setter)
+    }
+
+    fun info(setter: ColoredText.() -> Unit) {
+        infoView = ColoredText().apply(setter)
+    }
+
+    fun icon(block: () -> File) {
+        icon = block()
+    }
+
+    fun build(): Result {
+        val result = Result()
+
+        titleView.apply {
+            result.setTitle(text)
+            result.setTitleColor(color)
+        }
+
+        infoView.apply {
+            result.setInfo(text)
+            result.setInfoColor(color)
+        }
+
+        icon.apply {
+            result.setIcon(readBytes())
+        }
+
+        return result
+    }
+}
+
+fun result(init: ResultBuilder.() -> Unit): Result = 
+    ResultBuilder(init).build()
+```
+
+#### Usage
+
+```kotlin
+val result = result {
+    title {
+        text = "Success!"
+        color = "#83e83e"
+    }
+    info {
+        text = "You completed the quest"
+        color = "#f0f8ff"
+    }
+    icon {
+        File.createTempFile("icon", "png")
+    }
+}
+
+result.show()
+```
+
+#### Output
+
+```
+Setting title -> Success!.
+Setting title color -> #83e83e.
+Setting info -> You completed the quest.
+Setting info color -> #f0f8ff.
+Setting image -> 0 bytes.
+Showing result.
 ```
 
 Structural
