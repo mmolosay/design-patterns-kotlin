@@ -15,6 +15,7 @@ Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patt
     * [Factory Method](#factory-method)
     * [Singleton](#singleton)
     * [Abstract Factory](#abstract-factory)
+    * [Builder](#builder)
 * [Structural Patterns](#structural)
     * [Adapter](#adapter)
     * [Decorator](#decorator)
@@ -610,6 +611,109 @@ println("Vehicle created: $vehicle")
 
 ```
 Vehicle created: abstractfactory.Car@6093dd95
+```
+
+[Builder](/src/builder/Builder.kt)
+-----------
+
+> The builder pattern provides a flexible solution to various object creation problems. The intent of the builder pattern is to separate the construction of a complex object from its representation.
+>
+> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Builder_pattern "wikipedia.org")
+
+#### Example
+
+```kotlin
+class Result {
+
+    fun setTitle(text: String) = println("Setting title -> $text.")
+    fun setTitleColor(color: String) = println("Setting title color -> $color.")
+    fun setInfo(text: String) = println("Setting info -> $text.")
+    fun setInfoColor(color: String) = println("Setting info color -> $color.")
+    fun setIcon(iconBytes: ByteArray) = println("Setting image -> ${iconBytes.size} bytes.")
+    fun show() = println("Showing result.")
+}
+
+class ColoredText {
+    var text: String = ""
+    var color: String = "#000000"
+}
+
+class ResultBuilder() {
+
+    constructor(init: ResultBuilder.() -> Unit) : this() {
+        init()
+    }
+
+    private var titleView = ColoredText()
+    private var infoView = ColoredText()
+    private var icon = File("")
+
+    fun title(setter: ColoredText.() -> Unit) {
+        titleView = ColoredText().apply(setter)
+    }
+
+    fun info(setter: ColoredText.() -> Unit) {
+        infoView = ColoredText().apply(setter)
+    }
+
+    fun icon(block: () -> File) {
+        icon = block()
+    }
+
+    fun build(): Result {
+        val result = Result()
+
+        titleView.apply {
+            result.setTitle(text)
+            result.setTitleColor(color)
+        }
+
+        infoView.apply {
+            result.setInfo(text)
+            result.setInfoColor(color)
+        }
+
+        icon.apply {
+            result.setIcon(readBytes())
+        }
+
+        return result
+    }
+}
+
+fun result(init: ResultBuilder.() -> Unit): Result = 
+    ResultBuilder(init).build()
+```
+
+#### Usage
+
+```kotlin
+val result = result {
+    title {
+        text = "Success!"
+        color = "#83e83e"
+    }
+    info {
+        text = "You completed the quest"
+        color = "#f0f8ff"
+    }
+    icon {
+        File.createTempFile("icon", "png")
+    }
+}
+
+result.show()
+```
+
+#### Output
+
+```
+Setting title -> Success!.
+Setting title color -> #83e83e.
+Setting info -> You completed the quest.
+Setting info color -> #f0f8ff.
+Setting image -> 0 bytes.
+Showing result.
 ```
 
 Structural
