@@ -20,6 +20,7 @@ Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patt
     * [Adapter](#adapter)
     * [Decorator](#decorator)
     * [Facade](#facade)
+    * [Composite](#composite)
 
 Behavioral
 ========
@@ -910,4 +911,52 @@ Turning the lights on...
 Greeting the user...
 Preparing the desktop...
 PC is ready!
+```
+
+[Composite](/src/composite/Composite.kt)
+-----------
+
+> The composite pattern describes a group of objects that is treated the same way as a single instance of the same type of object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies.
+>
+> **Source:** [wikipedia.org](https://en.wikipedia.org/wiki/Composite_pattern "wikipedia.org")
+
+#### Example
+
+```kotlin
+open class ShopItem(name: String, price: Int) {
+    open var totalPrice: Int = price
+}
+
+open class Composite(name: String) : ShopItem(name, 0) {
+
+    private val items = ArrayList<ShopItem>()
+
+    override var totalPrice: Int
+        get() = items.sumBy { it.totalPrice }
+        set(value) {}
+
+    fun add(vararg item: ShopItem): Composite = apply {
+        items.addAll(item)
+    }
+}
+
+class ToothBrush : ShopItem("Tooth brush", 100)
+class Rice : ShopItem("Rice", 50)
+class Cookie : ShopItem("Cookie", 40)
+class Check : Composite("Check")
+```
+
+#### Usage
+
+```kotlin
+    val check = Check()
+    check.add(ToothBrush(), Rice(), Cookie(), Cookie())
+    
+    println(check.totalPrice)
+```
+
+#### Output
+
+```
+230
 ```
