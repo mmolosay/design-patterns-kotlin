@@ -8,6 +8,10 @@ import builder.result
 import command.Vault
 import complexpatterns.CountingDuckFuctory
 import complexpatterns.DuckSimulator
+import composite.Check
+import composite.Cookie
+import composite.Rice
+import composite.ToothBrush
 import decorator.BreakfastCoffee
 import decorator.BreakfastMeal
 import facade.PC
@@ -47,7 +51,8 @@ fun printMenu() {
             "11. Iterator\n" +
             "12. State\n" +
             "13. Builder\n" +
-            "14. Complex Patterns\n" +
+            "14. Composite\n" +
+            "15. Complex Patterns\n" +
             "==============================" +
             "")
 }
@@ -82,7 +87,8 @@ fun toggleMenu(input: Int) {
         11 -> iterator()
         12 -> state()
         13 -> builder()
-        14 -> complexPatterns()
+        14 -> composite()
+        15 -> complexPatterns()
 
         else -> println("Invalid input. Try again.")
     }
@@ -246,6 +252,12 @@ fun builder() {
     }
 
     result.show()
+}
+
+fun composite() {
+    val check = Check()
+    check.add(ToothBrush(), Rice(), Cookie(), Cookie())
+    println(check.totalPrice)
 }
 
 fun complexPatterns() {

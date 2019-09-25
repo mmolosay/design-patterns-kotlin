@@ -64,5 +64,6 @@ class ResultBuilder() {
     }
 }
 
-fun result(init: ResultBuilder.() -> Unit): Result = ResultBuilder(init).build()
+fun result(init: ResultBuilder.() -> Unit): Result =
+    ResultBuilder(init).build()
 
