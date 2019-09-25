@@ -4,6 +4,7 @@ import adapter.MallardDuck
 import adapter.TurkeyAdapter
 import adapter.WildTurkey
 import adapter.huntDuck
+import builder.result
 import command.Vault
 import complexpatterns.CountingDuckFuctory
 import complexpatterns.DuckSimulator
@@ -22,11 +23,12 @@ import strategy.Duck
 import strategy.QuackBehavior
 import templatemethod.Coffee
 import templatemethod.Tea
+import java.io.File
 
 fun main(args: Array<String>) {
     while (true) {
         printMenu()
-        toggleMenu(getInput("Select pattern to demonstrate:"))
+        toggleMenu(getInput("Select pattern to demonstrate: "))
     }
 }
 
@@ -44,7 +46,8 @@ fun printMenu() {
             "10. Template Method\n" +
             "11. Iterator\n" +
             "12. State\n" +
-            "13. Complex Patterns\n" +
+            "13. Builder\n" +
+            "14. Complex Patterns\n" +
             "==============================" +
             "")
 }
@@ -66,19 +69,20 @@ fun getInput(msg: String? = null): Int {
 fun toggleMenu(input: Int) {
     println("==============================")
     when(input) {
-        1    -> strategy()
-        2    -> observer()
-        3    -> decorator()
-        4    -> factoryMethod()
-        5    -> abstractFactory()
-        6    -> singleton()
-        7    -> command()
-        8    -> adapter()
-        9    -> facade()
-        10   -> templateMethod()
-        11   -> iterator()
-        12   -> state()
-        13   -> complexPatterns()
+        1  -> strategy()
+        2  -> observer()
+        3  -> decorator()
+        4  -> factoryMethod()
+        5  -> abstractFactory()
+        6  -> singleton()
+        7  -> command()
+        8  -> adapter()
+        9  -> facade()
+        10 -> templateMethod()
+        11 -> iterator()
+        12 -> state()
+        13 -> builder()
+        14 -> complexPatterns()
 
         else -> println("Invalid input. Try again.")
     }
@@ -224,6 +228,24 @@ fun state() {
     atm.withdrawCash(1000)
     atm.withdrawCash(5000)
     atm.removeCard()
+}
+
+fun builder() {
+    val result = result {
+        title {
+            text = "Success!"
+            color = "#83e83e"
+        }
+        info {
+            text = "You completed the quest"
+            color = "#f0f8ff"
+        }
+        icon {
+            File.createTempFile("icon", "png")
+        }
+    }
+
+    result.show()
 }
 
 fun complexPatterns() {
