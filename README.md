@@ -92,7 +92,14 @@ Text is changed pattern  -> demonstration
 #### Example
 ```kotlin
 interface QuackBehavior {
+
     fun quack(): String
+
+    // not necessary, just simulates SAM conversion
+    companion object {
+        inline operator fun invoke(crossinline block: () -> String) =
+            object : QuackBehavior { override fun quack(): String = block() }
+    }
 }
 
 class Duck(private var quackBehavior: QuackBehavior) {
@@ -108,9 +115,11 @@ class Duck(private var quackBehavior: QuackBehavior) {
 #### Usage
 
 ```kotlin
+// without "SAM conversion"
 val commonQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'Quack!\'" }
-val rubberQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'Squeeeeek\'" }
-val silentQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'...\'" }
+// with "SAM conversion"
+val rubberQuackBehavior = QuackBehavior { "\'Squeeeeek\'" }
+val silentQuackBehavior = QuackBehavior { "\'...\'" }
 
 val mallardDuck = Duck(commonQuackBehavior)
 val rubberDuck = Duck(rubberQuackBehavior)
