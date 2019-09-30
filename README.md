@@ -77,9 +77,9 @@ with(textObserver) {
 #### Output
 
 ```
-Text is changed <empty> -> Observer
+Text is changed <empty>  -> Observer
 Text is changed Observer -> pattern
-Text is changed pattern    -> demonstration
+Text is changed pattern  -> demonstration
 ```
 
 [Strategy](/src/strategy/Strategy.kt)
