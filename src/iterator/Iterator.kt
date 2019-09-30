@@ -7,8 +7,8 @@ interface IteratorBehavior {
 }
 
 class CollectionItem(
-        var name: String,
-        var description: String
+        private var name: String,
+        private var description: String
 ) {
     override fun toString(): String = "$name: $description"
 }

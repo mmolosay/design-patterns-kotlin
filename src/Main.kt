@@ -162,7 +162,7 @@ fun abstractFactory() {
 }
 
 fun singleton() {
-    val coords = MouseController.coords
+    MouseController.coords
     MouseController.coords = Pair(5, 10)
 }
 
