@@ -97,15 +97,11 @@ fun toggleMenu(input: Int) {
 
 
 fun strategy() {
-    val commonQuackBehavior = object : QuackBehavior {
-        override fun quack(): String = "\'Quack!\'"
-    }
-    val rubberQuackBehavior = object : QuackBehavior {
-        override fun quack(): String = "\'Squeeeeek\'"
-    }
-    val silentQuackBehavior = object : QuackBehavior {
-        override fun quack(): String = "\'...\'"
-    }
+    // without "SAM conversion"
+    val commonQuackBehavior = object : QuackBehavior { override fun quack(): String = "\'Quack!\'" }
+    // with "SAM conversion"
+    val rubberQuackBehavior = QuackBehavior { "\'Squeeeeek\'" }
+    val silentQuackBehavior = QuackBehavior { "\'...\'" }
 
     val mallardDuck = Duck(commonQuackBehavior)
     val rubberDuck = Duck(rubberQuackBehavior)
