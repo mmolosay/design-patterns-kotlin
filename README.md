@@ -1,6 +1,6 @@
 # Design Patterns In Kotlin
 Inspired by [Design-Patterns-In-Kotlin](https://github.com/dbacinski/Design-Patterns-In-Kotlin#behavioral "Design-Patterns-In-Kotlin") by [dbacinski](https://github.com/dbacinski "dbacinski"), be sure to check him out!  
-*You can move to Kotlin file by clicking on a pattern title.*
+*You can jump to Kotlin file by clicking on a pattern title.*
 
 ## Table of Contents
 
