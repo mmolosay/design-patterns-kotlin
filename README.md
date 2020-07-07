@@ -857,8 +857,8 @@ class BreakfastMeal(private val c: BreakfastComponent, private val mealName: Str
 ```kotlin
 val coffee = BreakfastCoffee()
 val cornflakes = BreakfastMeal(coffee, "cornflakes")
-val sandwich  = BreakfastMeal(cornflakes, "sandwich")
-val apple        = BreakfastMeal(sandwich, "apple")
+val sandwich = BreakfastMeal(cornflakes, "sandwich")
+val apple = BreakfastMeal(sandwich, "apple")
 
 print("John's breakfast: ")
 apple.makeBreakfast()
